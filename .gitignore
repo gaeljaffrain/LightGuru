@@ -1,0 +1,25 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Mac crap
+.DS_Store
+
+# Cascades stuff
+.project
+.cproject
+.device
+.settings
+arm
+.preview*
+.assets*

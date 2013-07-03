@@ -1,0 +1,76 @@
+<!--
+  
+    Copyright 2013 Gael Jaffrain
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  
+-->
+
+<model>
+	<column loop="false">
+		<itemexptime displayname="30s"/> 
+		<itemexptime displayname="15s"/> 
+		<itemexptime displayname="8s"/> 
+		<itemexptime displayname="4s"/> 	
+		<itemexptime displayname="2s"/> 
+		<itemexptime displayname="1s"/> 
+		<itemexptime displayname="1/2"/> 
+		<itemexptime displayname="1/4"/> 
+		<itemexptime displayname="1/8"/> 
+		<itemexptime displayname="1/15"/> 
+		<itemexptime displayname="1/30"/> 
+		<itemexptime displayname="1/60"/>
+		<itemexptime displayname="1/125"/>	
+		<itemexptime displayname="1/250"/>	
+		<itemexptime displayname="1/500"/>	
+		<itemexptime displayname="1/1000"/>	
+		<itemexptime displayname="1/2000"/>	
+		<itemexptime displayname="1/4000"/>	
+		<itemexptime displayname="1/8000"/>	
+	</column>
+ 	<column loop="false">
+		<itemfstop displayname="f/1"/> 
+		<itemfstop displayname="f/1.4"/> 
+		<itemfstop displayname="f/2"/> 
+		<itemfstop displayname="f/2.8"/>
+		<itemfstop displayname="f/4"/>	
+		<itemfstop displayname="f/5.6"/>	
+		<itemfstop displayname="f/8"/>	
+		<itemfstop displayname="f/11"/>	
+		<itemfstop displayname="f/16"/> 
+		<itemfstop displayname="f/22"/> 		
+		<itemfstop displayname="f/32"/> 
+		<itemfstop displayname="f/45"/> 
+		<itemfstop displayname="f/64"/>
+		<itemfstop displayname="f/90"/>  
+	</column>
+ 	<column loop="false">
+		<itemiso displayname="6"/> 
+		<itemiso displayname="12"/> 
+		<itemiso displayname="25"/> 
+		<itemiso displayname="50"/> 
+		<itemiso displayname="100"/> 
+		<itemiso displayname="200"/>
+		<itemiso displayname="400"/>	
+		<itemiso displayname="800"/>	
+		<itemiso displayname="1600"/>	
+		<itemiso displayname="3200"/>	
+		<itemiso displayname="6400"/>	
+		<itemiso displayname="12800"/>	
+		<itemiso displayname="25600"/>
+		<itemiso displayname="51200"/>
+		<itemiso displayname="102400"/>
+	</column>
+</model>
+

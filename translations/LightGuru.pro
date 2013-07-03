@@ -1,0 +1,1 @@
+include (../LightGuru.pro)
