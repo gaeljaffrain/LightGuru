@@ -4,10 +4,6 @@
 <context>
     <name>RegistrationHandler</name>
     <message>
-        <source>Please wait while the application connects to BBM.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Application connected to BBM.  Press Continue.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -104,6 +100,10 @@ Other credits: locker icons by DesignModo &lt;a href=&quot;http://designmodo.com
     </message>
     <message>
         <source>Display Out of range alerts ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display EV at startup ?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

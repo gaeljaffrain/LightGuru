@@ -202,7 +202,7 @@ NavigationPane {
 	
 	                    // Center the text in the container.
 	                    text: "EV100 N/A"
-	                    visible: false
+	                    //visible: false
 	                    horizontalAlignment: HorizontalAlignment.Center
 	                    textStyle {
 	                        textAlign: TextAlign.Center
@@ -215,13 +215,23 @@ NavigationPane {
 	                    if (event.isUp()) {
 	                        // Toggle EV visibility
 	                        evText.visible = !evText.visible;
-	                    }
+
+							saveEVvisible();
+
+                        }
 	                }
 	                onCreationCompleted: {
 	                    if (aspectRatio.square == true) {
 	                            luxContainer.layout.orientation = LayoutOrientation.LeftToRight;
 	                            luxText.rightMargin = 200;
 	                    }
+	                }
+	                function saveEVvisible(){
+	                    // Save setting
+						var checked;
+						if (evText.visible) checked = "true";
+						else checked = "false";
+                        _lightGuruApp.saveValueFor("showEV", checked)
 	                }
 	            } // End of Lux/EV stack container
 	
@@ -444,12 +454,17 @@ NavigationPane {
 	            }
 	            
 	            onCreationCompleted: {
-	                //When app is loaded, we retrieve the stored alert setting.
+	                //When app is loaded, we retrieve the stored settings.
 	                if (_lightGuruApp.getValueFor("alertSettings", "true") == "true") {
 	                    outRangeToast.active = true;
 	                } else {
 	                    outRangeToast.active = false;
 	                }
+	                if (_lightGuruApp.getValueFor("showEV", "false") == "true") {
+                        evText.visible = true;
+                    } else {
+                        evText.visible = false;
+                    }
 	            }
             }    
         } // End of Main Container
@@ -477,6 +492,7 @@ NavigationPane {
 
                 onTriggered: {
                     evText.visible = !evText.visible;
+                    luxContainer.saveEVvisible();
                 }
             },
             
@@ -485,7 +501,7 @@ NavigationPane {
                 title: "Share on BBM"
                 ActionBar.placement: ActionBarPlacement.InOverflow
                 imageSource: "asset:///images/ic_bbm.png"
-                enabled: true
+                enabled: _lightGuruApp.allowed;
                 
                 onTriggered: {
                     _lightGuruApp.sendInvite();

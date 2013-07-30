@@ -34,7 +34,13 @@ RegistrationHandler::RegistrationHandler(const QUuid &uuid, QObject *parent)
     , m_isAllowed(false)
     , m_progress(BbmRegistrationProgress::NotStarted)
     , m_temporaryError(false)
-    , m_statusMessage(tr("Please wait while the application connects to BBM."))
+	, m_statusMessage(tr(""))
+
+	// In the class provided by BlackBerry a message is displayed, but I think it is cleaner not to display anything here.
+	// While connecting, an overlay toast will give feedback to the user.
+	// If there is a problem, then the error message will also be displayed.
+	//, m_statusMessage(tr("Please wait while the application connects to BBM."))
+
 {
     QmlDocument* qml = QmlDocument::create("asset:///registration.qml")
                        .parent(this);
