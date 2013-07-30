@@ -16,29 +16,35 @@
 */
 
 #include "lightguru.h"
+#include "RegistrationHandler.hpp"
 
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/Page>
 #include <bb/cascades/NavigationPane>
 #include <QSettings>
 
-
+#include <bb/platform/bbm/MessageService>
 
 
 using namespace bb::cascades;
 
-LightGuruApp::LightGuruApp()
+LightGuruApp::LightGuruApp(bb::platform::bbm::Context &context, QObject *parent)
+	: QObject(parent)
+	, m_messageService(0)
+	, m_context(&context)
 {
 	// Set the application organization and name, which is used by QSettings
 	// when saving values to the persistent store.
 	QCoreApplication::setOrganizationName("Gael Jaffrain");
 	QCoreApplication::setApplicationName("LightGuru");
 
+}
 
-	// Obtain a QMLDocument and load it into the qml variable, using build patterns.
-    QmlDocument *qml = QmlDocument::create("asset:///lightguru.qml");
-	qml->setContextProperty("_lightGuruApp", this);
-
+void LightGuruApp::show()
+{
+    // Create the actual main UI
+    QmlDocument* qml = QmlDocument::create("asset:///lightguru.qml").parent(Application::instance());
+    qml->setContextProperty("_lightGuruApp", this);
 
     // If the QML document is valid, we process it.
     if (!qml->hasErrors()) {
@@ -56,8 +62,17 @@ LightGuruApp::LightGuruApp()
 			//addApplicationCover();
 		}
     }
+}
 
+void LightGuruApp::sendInvite()
+{
+    if (!m_messageService) {
+        // Instantiate the MessageService.
+        m_messageService = new bb::platform::bbm::MessageService(m_context, this);
+    }
 
+    // Trigger the invite to download process.
+    m_messageService->sendDownloadInvitation();
 }
 
 QString LightGuruApp::getValueFor(const QString &objectName, const QString &defaultValue)

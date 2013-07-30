@@ -3,26 +3,38 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/lightguru.cpp) \
+        LIBS += -lbbplatformbbm
+
+        SOURCES +=  $$quote($$BASEDIR/src/RegistrationHandler.cpp) \
+                 $$quote($$BASEDIR/src/lightguru.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/lightguru.h)
+        HEADERS +=  $$quote($$BASEDIR/src/RegistrationHandler.hpp) \
+                 $$quote($$BASEDIR/src/lightguru.h)
     }
 
     CONFIG(release, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/lightguru.cpp) \
+        LIBS += -lbbplatformbbm
+
+        SOURCES +=  $$quote($$BASEDIR/src/RegistrationHandler.cpp) \
+                 $$quote($$BASEDIR/src/lightguru.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/lightguru.h)
+        HEADERS +=  $$quote($$BASEDIR/src/RegistrationHandler.hpp) \
+                 $$quote($$BASEDIR/src/lightguru.h)
     }
 }
 
 simulator {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/lightguru.cpp) \
+        LIBS += -lbbplatformbbm
+
+        SOURCES +=  $$quote($$BASEDIR/src/RegistrationHandler.cpp) \
+                 $$quote($$BASEDIR/src/lightguru.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/lightguru.h)
+        HEADERS +=  $$quote($$BASEDIR/src/RegistrationHandler.hpp) \
+                 $$quote($$BASEDIR/src/lightguru.h)
     }
 }
 
