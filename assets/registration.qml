@@ -48,6 +48,7 @@ NavigationPane {
                         color: Color.White
                     }
                     multiline: true
+                    textStyle.textAlign: TextAlign.Center
                 }
             }
         }
