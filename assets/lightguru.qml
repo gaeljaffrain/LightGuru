@@ -478,17 +478,19 @@ NavigationPane {
                 onTriggered: {
                     evText.visible = !evText.visible;
                 }
-            }
-            // BBM integration to be enabled in a future version
-            /*,
+            },
+            
+            // BBM integration
             ActionItem {
                 title: "Share on BBM"
                 ActionBar.placement: ActionBarPlacement.InOverflow
                 imageSource: "asset:///images/ic_bbm.png"
-
+                enabled: true
+                
                 onTriggered: {
+                    _lightGuruApp.sendInvite();
                 }
-            }*/
+            }
         ]
 
     } // End of Page

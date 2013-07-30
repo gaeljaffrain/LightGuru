@@ -20,6 +20,20 @@
 
 #include <bb/cascades/Application>
 
+
+namespace bb
+{
+namespace platform
+{
+namespace bbm
+{
+class Context;
+class MessageService;
+}
+}
+}
+
+
 /**
  * HelloWorld Description:
  *
@@ -35,8 +49,10 @@ Q_OBJECT
 
 public:
     // This is our constructor that sets up the recipe.
-    LightGuruApp();
+    LightGuruApp(bb::platform::bbm::Context &context, QObject *parent = 0);
 
+    // This method is invoked to open the invitation dialog
+    Q_INVOKABLE void sendInvite();
 
     /* Invokable functions that we can call from QML*/
 
@@ -61,6 +77,15 @@ public:
      */
     Q_INVOKABLE
     void saveValueFor(const QString &objectName, const QString &inputValue);
+
+public Q_SLOTS:
+    // This methods creates the main UI and initializes the message service
+    void show();
+
+private:
+    // The service object to send BBM messages
+    bb::platform::bbm::MessageService* m_messageService;
+    bb::platform::bbm::Context* m_context;
 };
 
 #endif // ifndef _LIGHTGURUAPP_H_
