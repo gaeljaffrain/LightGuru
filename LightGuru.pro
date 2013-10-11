@@ -2,6 +2,10 @@ APP_NAME = LightGuru
 
 CONFIG += qt warn_on cascades10
 
+LIBS += -lbbplatformbbm -lbbsystem
+
+
+
 TRANSLATIONS += \
     $${TARGET}_en_GB.ts \
     $${TARGET}_fr.ts \

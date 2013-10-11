@@ -16,6 +16,8 @@
 */
 
 #include "lightguru.h"
+#include "RegistrationHandler.hpp"
+
 #include <Qt/qdeclarativedebug.h>
 
 #include <QLocale>
@@ -36,8 +38,20 @@ Q_DECL_EXPORT int main(int argc, char **argv)
         app.installTranslator(&translator);
     }
 
+    // Define LightGuru UUID
+    const QUuid uuid(QLatin1String("aef8d7f0-f277-11e2-b778-0800200c9a66"));
+
+    // Register with BBM.
+    RegistrationHandler* registrationHandler = new RegistrationHandler(uuid, &app);
+
     // Initialize our application.
-    LightGuruApp mainApp;
+    LightGuruApp *mainApp = new LightGuruApp(registrationHandler->context(), &app);
+
+    QObject::connect(registrationHandler, SIGNAL(stateChanged()), mainApp, SLOT(show()));
+
+    // Now that the signal is connected to the slot we can fire the registration process
+    // When BBM registration process will be finished, then the main UI will be shown
+    registrationHandler->registerApplication ();
 
     // We complete the transaction started in the main application constructor and start the
     // client event loop here. When loop is exited the Application deletes the scene which
