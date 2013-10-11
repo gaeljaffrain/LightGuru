@@ -63,5 +63,41 @@ Page {
             }
         }
 
+        // Display EV at startup Settings
+        Container {
+            id: evSettingsContainer
+
+            layout: DockLayout {
+
+            }
+
+            horizontalAlignment: HorizontalAlignment.Fill
+            leftPadding: 10.0
+            topPadding: 10.0
+            rightPadding: 10.0
+            bottomPadding: 10.0
+            Label {
+                text: qsTr("Display EV at startup ?")
+                verticalAlignment: VerticalAlignment.Center
+                leftMargin: 10.0
+            }
+
+            ToggleButton {
+                id: evSettings
+                objectName: "showEV"
+                horizontalAlignment: HorizontalAlignment.Right
+                checked: _lightGuruApp.getValueFor(evSettings.objectName, "false")
+
+                onCheckedChanged: {
+                    _lightGuruApp.saveValueFor(evSettings.objectName, checked)
+                    if (checked == true) {
+                        evText.visible = true;
+                    } else {
+                        evText.visible = false;
+                    }
+                }
+            }
+        }
+
     }
 }

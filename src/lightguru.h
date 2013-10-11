@@ -18,25 +18,44 @@
 #ifndef _LIGHTGURUAPP_H_
 #define _LIGHTGURUSAPP_H_
 
+#include <bb/platform/bbm/Context>
 #include <bb/cascades/Application>
 
+
+namespace bb
+{
+namespace platform
+{
+namespace bbm
+{
+class Context;
+class MessageService;
+}
+}
+}
+
+
 /**
- * HelloWorld Description:
+ * LightGuru Description:
  *
- * This sample application shows some of the very basic handling of
- * images and text in Cascades. Loading a QML for a simple hello
- * world sample application containing to images and a "Hello World"
- * text.
+ * This application is a light meter for BlackBerry 10.
  *
  */
 class LightGuruApp: public QObject
 {
 Q_OBJECT
 
+// Flag indicating whether the application is successfully registered
+// with BBM.
+Q_PROPERTY(bool allowed READ isAllowed)
+
 public:
     // This is our constructor that sets up the recipe.
-    LightGuruApp();
+    LightGuruApp(bb::platform::bbm::Context &context, QObject *parent = 0);
+    //~LightGuruApp();
 
+    // This method is invoked to open the invitation dialog
+    Q_INVOKABLE void sendInvite();
 
     /* Invokable functions that we can call from QML*/
 
@@ -61,6 +80,19 @@ public:
      */
     Q_INVOKABLE
     void saveValueFor(const QString &objectName, const QString &inputValue);
+
+public Q_SLOTS:
+    // This methods creates the main UI and initializes the message service
+    void show();
+
+private:
+    // Return true if registration has completed successfully.
+    bool isAllowed() const
+    { return m_context->isAccessAllowed(); }
+
+    // The service object to send BBM messages
+    bb::platform::bbm::MessageService* m_messageService;
+    bb::platform::bbm::Context* m_context;
 };
 
 #endif // ifndef _LIGHTGURUAPP_H_
