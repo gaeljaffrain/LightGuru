@@ -86,6 +86,10 @@ NavigationPane {
 	
 	                    // Turn on the sensor
 	                    active: true
+	                    
+	                    // Peak mode
+	                    property bool peakMode: false
+	                    property double peakLuxValue: 0
 	
 	                    // Keep the sensor active when the app isn't visible or the screen is off (requires app permission in bar-descriptor)
 	                    alwaysOn: true
@@ -94,17 +98,24 @@ NavigationPane {
 	                    //skipDuplicates: true
 	
 	                    onReadingChanged: { // Called when an light reading is available
+	                    	
 	                    	var lux_value = light.reading.lux;
-	
-	                        // Update our Lux indicator
-	                        luxText.text = Math.round(lux_value) + " lux";
-	
-	                        // Update our EV100 indicator - EV = log2(lux/2.5) - reference : http://en.wikipedia.org/wiki/Light_meter
-	                        var ev_value = (Math.log(lux_value / 2.5) / Math.LN2); // in Javascript log is natural log (e base))
-	                        evText.text = "<html>EV<span style='font-size:small'>100</span> " + ev_value.toFixed(1) + "</html>";
-	
-							// Update our picker UI at any new light value
-							exposurePicker.updatePicker();
+	                    	
+	                    	if (lux_value > peakLuxValue || peakMode == false) {
+	                    	    // Save new maximum lux
+	                    	    peakLuxValue = lux_value;
+	                    	    
+                                // Update our Lux indicator
+                                luxText.text = Math.round(lux_value) + " lux";
+
+                                // Update our EV100 indicator - EV = log2(lux/2.5) - reference : http://en.wikipedia.org/wiki/Light_meter
+                                var ev_value = (Math.log(lux_value / 2.5) / Math.LN2); // in Javascript log is natural log (e base))
+                                evText.text = "<html>EV<span style='font-size:small'>100</span> " + ev_value.toFixed(1) + "</html>";
+
+                                // Update our picker UI at any new light value
+                                exposurePicker.updatePicker();
+                            }
+	                        
 	                        
 	                    } // end of on reading changed
 	                }, // end of light sensor
@@ -482,6 +493,20 @@ NavigationPane {
                         imageSource = "asset:///images/locked.png";
                     } else {
                         imageSource = "asset:///images/unlocked.png";
+                    }
+                }
+            },
+            ActionItem {
+                title: "Peak"
+                ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///images/peak.png"
+
+                onTriggered: {
+                    light.peakMode = ! light.peakMode;
+                    if (imageSource == "asset:///images/peak.png") {
+                        imageSource = "asset:///images/peak-active.png";
+                    } else {
+                        imageSource = "asset:///images/peak.png";
                     }
                 }
             },

@@ -100,12 +100,30 @@ Page {
 	        }
 
             Header {
+                title: qsTr("Peak feature")
+
+            }
+            ImageToggleButton {
+                horizontalAlignment: HorizontalAlignment.Center
+                imageSourceDefault: "asset:///images/peak.png"
+                imageSourceChecked: "asset:///images/peak-active.png"
+
+            }
+            TextArea {
+                text: qsTr("The peak feature is allowing you to hold the max lux value. If enabled the lux indicator will be updated only if a higher value is observed. Be aware that the refesh rate of the light sensor hardware may not allow to sense very short light transients or flash strobes.")
+                backgroundVisible: false
+                textFormat: TextFormat.Html
+                editable: false
+
+            }
+
+            Header {
 	            title: qsTr("Credits")
 	
 	        }
 	        TextArea {
-	            text: qsTr("LightGuru was designed and programmed by Gael Jaffrain.\nWebsite: <a href=\"http://gaeljaffrain.com\">gaeljaffrain.com</a>\n\nOther credits: locker icons by DesignModo <a href=\"http://designmodo.com\">designmodo.com</a>, used under Creative Commons license.")
-	            backgroundVisible: false
+	            text: qsTr("LightGuru was designed and programmed by Gael Jaffrain.\nWebsite: <a href=\"http://gaeljaffrain.com\">gaeljaffrain.com</a>\n\nLightGuru is published under the GPL licence. Source code is available at <a href=\"https://github.com/gaeljaffrain/LightGuru\">https://github.com/gaeljaffrain/LightGuru</a>\n\nOther credits: locker icons by DesignModo <a href=\"http://designmodo.com\">designmodo.com</a>, used under Creative Commons license.")
+                backgroundVisible: false
 	            textFormat: TextFormat.Html
 	            editable: false
 	
