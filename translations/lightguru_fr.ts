@@ -85,8 +85,18 @@ As with any light meter, you should make the measurement on your subject, to mea
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Peak feature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The peak feature is allowing you to hold the max lux value. If enabled the lux indicator will be updated only if a higher value is observed. Be aware that the refesh rate of the light sensor hardware may not allow to sense very short light transients or flash strobes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>LightGuru was designed and programmed by Gael Jaffrain.
 Website: &lt;a href=&quot;http://gaeljaffrain.com&quot;&gt;gaeljaffrain.com&lt;/a&gt;
+
+LightGuru is published under the GPL licence. Source code is available at &lt;a href=&quot;https://github.com/gaeljaffrain/LightGuru&quot;&gt;https://github.com/gaeljaffrain/LightGuru&lt;/a&gt;
 
 Other credits: locker icons by DesignModo &lt;a href=&quot;http://designmodo.com&quot;&gt;designmodo.com&lt;/a&gt;, used under Creative Commons license.</source>
         <translation type="unfinished"></translation>
