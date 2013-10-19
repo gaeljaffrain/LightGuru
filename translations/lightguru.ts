@@ -109,11 +109,15 @@ Other credits: locker icons by DesignModo &lt;a href=&quot;http://designmodo.com
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display Out of range alerts ?</source>
+        <source>Display Out of range alerts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display EV at startup ?</source>
+        <source>Display EV at startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Custom Calibration</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

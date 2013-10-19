@@ -90,7 +90,12 @@ NavigationPane {
 	                    // Peak mode
 	                    property bool peakMode: false
 	                    property double peakLuxValue: 0
-	
+	                    
+	                    // Custom Calibration
+	                    property bool customCalibration: false
+	                    property double customCalibrationGain: 1
+	                    property double customCalibrationOffset: 0
+	                    	
 	                    // Keep the sensor active when the app isn't visible or the screen is off (requires app permission in bar-descriptor)
 	                    alwaysOn: true
 	
@@ -101,6 +106,14 @@ NavigationPane {
 	                    	
 	                    	var lux_value = light.reading.lux;
 	                    	
+	                    	// Correct reading using custom calibration
+	                    	if (customCalibration) {
+	                    	    lux_value = lux_value*customCalibrationGain + customCalibrationOffset;
+	                    	    if (lux_value <0) {lux_value = 0;}
+	                    	    //console.log("CustomGain=" + customCalibrationGain + " - CustomOffset=" + customCalibrationOffset);
+	                    	}
+	                    	
+	                    	// Update all indicators and handle Peak Mode
 	                    	if (lux_value > peakLuxValue || peakMode == false) {
 	                    	    // Save new maximum lux
 	                    	    peakLuxValue = lux_value;
@@ -408,7 +421,7 @@ NavigationPane {
 	                // UpdatePicker()
 	                function updatePicker() {
 	                    var C = 250; //light meter constant, to be possibly calibrated in later version
-	                    var lux_value = light.reading.lux;
+	                    var lux_value = light.peakLuxValue; //light.reading.lux;
 	
 	                    var time_index = exposurePicker.selectedIndex(0);
 	                    var fstop_index = exposurePicker.selectedIndex(1);
@@ -476,7 +489,10 @@ NavigationPane {
                     } else {
                         evText.visible = false;
                     }
-	            }
+                    light.customCalibration = _lightGuruApp.getValueFor("customCalibration", "false");
+                    light.customCalibrationGain = Number(_lightGuruApp.getValueFor("customGain", "1"));
+                    light.customCalibrationOffset = Number(_lightGuruApp.getValueFor("customOffset", "0"));
+                }
             }    
         } // End of Main Container
         
