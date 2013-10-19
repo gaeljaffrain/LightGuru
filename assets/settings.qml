@@ -39,7 +39,7 @@ Page {
             rightPadding: 10.0
             bottomPadding: 10.0
             Label {
-                text: qsTr("Display Out of range alerts ?")
+                text: qsTr("Display Out of range alerts")
                 verticalAlignment: VerticalAlignment.Center
                 leftMargin: 10.0
             }
@@ -77,7 +77,7 @@ Page {
             rightPadding: 10.0
             bottomPadding: 10.0
             Label {
-                text: qsTr("Display EV at startup ?")
+                text: qsTr("Display EV at startup")
                 verticalAlignment: VerticalAlignment.Center
                 leftMargin: 10.0
             }
@@ -99,5 +99,133 @@ Page {
             }
         }
 
-    }
+        // Custom Calibration Settings
+        Container {
+            id: customCalibrationContainer
+
+            layout: DockLayout {
+
+            }
+
+            horizontalAlignment: HorizontalAlignment.Fill
+            leftPadding: 10.0
+            topPadding: 10.0
+            rightPadding: 10.0
+            bottomPadding: 10.0
+            Label {
+                text: qsTr("Use Custom Calibration")
+                verticalAlignment: VerticalAlignment.Center
+                leftMargin: 10.0
+            }
+
+            ToggleButton {
+                id: customCalibration
+                objectName: "customCalibration"
+                horizontalAlignment: HorizontalAlignment.Right
+                checked: _lightGuruApp.getValueFor(customCalibration.objectName, "false")
+
+                onCheckedChanged: {
+                    _lightGuruApp.saveValueFor(customCalibration.objectName, checked);
+                    if (checked == true) {
+                        customCalibrationGainContainer.visible = true;
+                        customCalibrationOffsetContainer.visible = true;
+
+                        light.customCalibration = true;
+                        light.customCalibrationGain = Number(showGain.text);
+                        light.customCalibrationOffset = Number(showOffset.text);
+                        
+                    } else {
+                        customCalibrationGainContainer.visible = false;
+                        customCalibrationOffsetContainer.visible = false;
+                        
+                        light.customCalibration = false;
+                        light.customCalibrationGain = 1;
+                        light.customCalibrationOffset = 0;
+                    }
+                }
+            }
+        }
+        
+	    // Gain
+	    Container {
+	        id: customCalibrationGainContainer
+            layout: StackLayout {
+	            orientation: LayoutOrientation.LeftToRight
+	        }
+	        horizontalAlignment: HorizontalAlignment.Center
+	        rightPadding: 20.0
+	        leftPadding: 20.0
+	        topPadding: 20.0
+	        bottomPadding: 20.0
+	        visible: false
+	
+	        Label {
+	            text: "Gain"
+	            preferredWidth: 100
+	            textStyle.textAlign: TextAlign.Center
+	        }
+	        Slider {
+	            id: customGain
+	            objectName: "customGain"
+	            value: _lightGuruApp.getValueFor(customGain.objectName, "1.0")
+	            toValue: 1.3
+	            fromValue: 0.7
+	            preferredWidth: 450.0
+	            onImmediateValueChanged: {
+	                showGain.text = immediateValue.toFixed(2);
+	            }
+	            onValueChanged: {
+	                _lightGuruApp.saveValueFor(customGain.objectName, showGain.text);
+	                light.customCalibrationGain = Number(showGain.text);
+	            }
+	        }
+	        Label {
+	            id: showGain
+	            text: "1.0"
+	            preferredWidth: 100
+	            textStyle.textAlign: TextAlign.Center
+	        }
+	    }
+	
+	    // Offset
+	    Container {
+            id: customCalibrationOffsetContainer
+            layout: StackLayout {
+	            orientation: LayoutOrientation.LeftToRight
+	        }
+	        horizontalAlignment: HorizontalAlignment.Center
+	        rightPadding: 20.0
+	        leftPadding: 20.0
+	        topPadding: 20.0
+	        bottomPadding: 20.0
+	        visible: false
+	        
+	        Label {
+	            text: "Offset"
+	            preferredWidth: 100
+	            textStyle.textAlign: TextAlign.Center
+	        }
+	        Slider {
+	            id: customOffset
+	            objectName: "customOffset"
+	            value: _lightGuruApp.getValueFor(customOffset.objectName, "0")
+                toValue: 100.0
+	            fromValue: -100.0
+	            preferredWidth: 450
+	            onImmediateValueChanged: {
+	                showOffset.text = immediateValue.toFixed(0);
+	            }
+	            onValueChanged: {
+	                _lightGuruApp.saveValueFor(customOffset.objectName, showOffset.text);
+	                light.customCalibrationOffset = Number(showOffset.text);
+	            }
+	        }
+	        Label {
+	            id: showOffset
+	            text: "0"
+	            preferredWidth: 100
+	            textStyle.textAlign: TextAlign.Center
+	        }
+	    }
+	}
 }
