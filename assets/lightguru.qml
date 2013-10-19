@@ -489,9 +489,9 @@ NavigationPane {
                     } else {
                         evText.visible = false;
                     }
-                    light.customCalibration = _lightGuruApp.getValueFor("customCalibration", "false")
-                    light.customCalibrationGain = _lightGuruApp.getValueFor("customGain", "1")
-                    light.customCalibrationOffset = _lightGuruApp.getValueFor("customOffset", "0")
+                    light.customCalibration = _lightGuruApp.getValueFor("customCalibration", "false");
+                    light.customCalibrationGain = Number(_lightGuruApp.getValueFor("customGain", "1"));
+                    light.customCalibrationOffset = Number(_lightGuruApp.getValueFor("customOffset", "0"));
                 }
             }    
         } // End of Main Container

@@ -16,4 +16,5 @@ Release Notes
 1.1.0.1		UI improvements, lock feature bug fix, EV toggle feature added, improved orientation support. Minimum OS: BlackBerry 10.1.
 1.2.0.2     BBM service integration, "Invite to download" feature added. EV toggle now saved. Minimum OS: BlackBerry 10.1.
 1.2.0.3		Peak feature added (was a cool suggestion from @lerass).
+1.3.0.3		Custom Calibration feature added. One bugfix for Peak mode feature. Tested on the new Z30.
 --- END ---
